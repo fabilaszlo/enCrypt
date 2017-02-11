@@ -7,7 +7,8 @@ var cryptABC=cryptABC_Basic;
 var distanceKey = 15;
 
 var cryptABCkeyword ="FÁBI LELLE LUCA";
-var cryptABCkeywordArray = Array.from(cryptABCkeyword);
+console.log(cryptABCkeyword);
+//var cryptABCkeywordArray = Array.from(cryptABCkeyword);
 //console.log(cryptABCkeywordArray);
 
 var removeDuplicationsFromString = function(string) {
@@ -32,32 +33,27 @@ var clearString = function(string,array) {
     return(arrayFromString.join(''));
 }
 
-cryptABCkeyword = removeDuplicationsFromString(cryptABCkeyword);
-cryptABCkeyword = clearString(cryptABCkeyword,cryptABC);
-
-console.log(cryptABCkeyword);
-/*
-var modifyCryptABC = function() {
-    cryptABCkeywordArray = Array.from(cryptABCkeyword);
-    cryptABC = cryptABCkeywordArray.concat(cryptABC_Basic);
-    for (var i=0; i<cryptABCkeywordArray.length; i++) {
-        for (var j=cryptABCkeywordArray.length; j<26; j++) {
-            if (cryptABC[j] === cryptABCkeywordArray[i]) {
-                cryptABC[j] = "";
+var modifyCryptABCWithKeyword = function (string,array) {
+    var arrayFromString = Array.from(string);
+    array = arrayFromString.concat(array);
+    for (var i=0; i<string.length; i++) {
+        for (var j = string.length; j<(array.length); j++) {
+            if (array[j] === arrayFromString[i] ) {
+                array[j] = "";
             }
         }
     }
-    var cryptABCString = cryptABC.join('');
-    cryptABC = Array.from(cryptABCString);
+    var stringFromArray = array.join('');
+    return(Array.from(stringFromArray));
 }
 
-
-
-clearKeyword();
-modifyCryptABC();
+cryptABCkeyword = clearString(cryptABCkeyword,cryptABC);
+cryptABCkeyword = removeDuplicationsFromString(cryptABCkeyword);
 console.log(cryptABCkeyword);
+cryptABC = modifyCryptABCWithKeyword(cryptABCkeyword,cryptABC);
 console.log(cryptABC);
 
+/*
 var messageInArray = Array.from(messageOriginal);
 var messageCryptedInArray = Array.from(messageCrypted);
 
