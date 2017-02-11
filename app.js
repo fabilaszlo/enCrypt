@@ -4,12 +4,9 @@ var messageCrypted = messageOriginal;
 
 var cryptABC_Basic = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 var cryptABC=cryptABC_Basic;
-var distanceKey = 15;
+var distanceKey = 3;
 
 var cryptABCkeyword ="FÁBI LELLE LUCA";
-console.log(cryptABCkeyword);
-//var cryptABCkeywordArray = Array.from(cryptABCkeyword);
-//console.log(cryptABCkeywordArray);
 
 var removeDuplicationsFromString = function(string) {
     var array = Array.from(string);
@@ -47,52 +44,40 @@ var modifyCryptABCWithKeyword = function (string,array) {
     return(Array.from(stringFromArray));
 }
 
+var enCryptCaesar = function (string,array) {
+    arrayFromString = Array.from(string);
+    var result = [];
+    for (var i=0; i<string.length; i++) {
+        result[i] = array[(array.indexOf(arrayFromString[i])+distanceKey)%26];
+    }
+    return(result.join(''));
+}
+
+var deCryptCaesar = function (string,array) {
+    arrayFromString = Array.from(string);
+    var result = [];
+    for (var i=0; i<string.length; i++) {
+        result[i] = array[(array.indexOf(arrayFromString[i])+(26-distanceKey))%26];
+    }
+    return(result.join(''));
+}
+console.log(distanceKey);
+console.log(cryptABCkeyword);
+
+cryptABCkeyword = cryptABCkeyword.toUpperCase();
 cryptABCkeyword = clearString(cryptABCkeyword,cryptABC);
 cryptABCkeyword = removeDuplicationsFromString(cryptABCkeyword);
 console.log(cryptABCkeyword);
+console.log(cryptABC);
 cryptABC = modifyCryptABCWithKeyword(cryptABCkeyword,cryptABC);
 console.log(cryptABC);
-
-/*
-var messageInArray = Array.from(messageOriginal);
-var messageCryptedInArray = Array.from(messageCrypted);
-
-var enCryptCaesar = function () {
-  for (var i=0; i < messageCryptedInArray.length; i++) {
-   if (cryptABC.indexOf(messageCryptedInArray[i]) >= 0) {
-    messageCryptedInArray[i] = cryptABC[(cryptABC.indexOf(messageCryptedInArray[i])+distanceKey)%26];
-    }
-   else {
-    messageCryptedInArray[i] = "";
-   } 
-  }
-}
-
+messageOriginal = clearString(messageOriginal,cryptABC);
 console.log(messageOriginal);
-enCryptCaesar();
 
-console.log(messageCryptedInArray);
-
-messageCrypted = messageCryptedInArray.join('');
+messageCrypted = enCryptCaesar(messageOriginal,cryptABC);
 console.log(messageCrypted);
 
-var secretMessageArray =[];
+var secretMessage=messageCrypted;
 
-var deCryptCaesar = function () {
-  for (var i=0; i < messageCrypted.length; i++) {
-   if (cryptABC.indexOf(messageCrypted[i]) >= 0) {
-    secretMessageArray[i] = cryptABC[(cryptABC.indexOf(messageCrypted[i])+(26-distanceKey))%26];
-    }
-   else {
-    secretMessageArray[i] = "";
-   } 
-  }
-}
-
-deCryptCaesar();
-
-var secretMessage = secretMessageArray.join('');
-console.log(secretMessageArray);
+secretMessage = deCryptCaesar(secretMessage,cryptABC);
 console.log(secretMessage);
-
-*/
