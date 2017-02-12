@@ -13,21 +13,21 @@ var removeDuplicationsFromString = function(string) {
     for (var i=0; i<string.length; i++) {
        for (var j=i+1; j<string.length; j++) {
            if (array[j] === array[i]) {
-             array[j]="";
+             delete(array[j]);
            }
        }
     }
-    return(array.join(''));
+    return array.join('');
 }
 
 var clearString = function(string,array) {
     var arrayFromString = Array.from(string);
     for (var i=0; i<string.length; i++) {
         if (array.indexOf(arrayFromString[i]) <0) {
-            arrayFromString[i] = ""
+            delete(arrayFromString[i]);
         }
     }
-    return(arrayFromString.join(''));
+    return arrayFromString.join('');
 }
 
 var modifyCryptABCWithKeyword = function (string,array) {
@@ -36,30 +36,30 @@ var modifyCryptABCWithKeyword = function (string,array) {
     for (var i=0; i<string.length; i++) {
         for (var j = string.length; j<(array.length); j++) {
             if (array[j] === arrayFromString[i] ) {
-                array[j] = "";
+                delete(array[j]);
             }
         }
     }
     var stringFromArray = array.join('');
-    return(Array.from(stringFromArray));
+    return Array.from(stringFromArray);
 }
 
 var enCryptCaesar = function (string,array) {
     arrayFromString = Array.from(string);
     var result = [];
     for (var i=0; i<string.length; i++) {
-        result[i] = array[(array.indexOf(arrayFromString[i])+distanceKey)%26];
+        result[i] = array[(array.indexOf(arrayFromString[i])+distanceKey)%(array.length)];
     }
-    return(result.join(''));
+    return result.join('');
 }
 
 var deCryptCaesar = function (string,array) {
     arrayFromString = Array.from(string);
     var result = [];
     for (var i=0; i<string.length; i++) {
-        result[i] = array[(array.indexOf(arrayFromString[i])+(26-distanceKey))%26];
+        result[i] = array[(array.indexOf(arrayFromString[i])+(26-distanceKey))%(array.length)];
     }
-    return(result.join(''));
+    return result.join('');
 }
 console.log(distanceKey);
 console.log(cryptABCkeyword);
