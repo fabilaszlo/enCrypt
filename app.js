@@ -20,7 +20,7 @@ var removeDuplicationsFromString = function(string) {
     return array.join('');
 }
 
-var clearString = function(string,array) {
+var clearString = function(string, array) {
     var arrayFromString = Array.from(string);
     for (var i=0; i<string.length; i++) {
         if (array.indexOf(arrayFromString[i]) <0) {
@@ -30,7 +30,7 @@ var clearString = function(string,array) {
     return arrayFromString.join('');
 }
 
-var modifyCryptABCWithKeyword = function (string,array) {
+var modifyCryptABCWithKeyword = function (string, array) {
     var arrayFromString = Array.from(string);
     array = arrayFromString.concat(array);
     for (var i=0; i<string.length; i++) {
@@ -44,7 +44,7 @@ var modifyCryptABCWithKeyword = function (string,array) {
     return Array.from(stringFromArray);
 }
 
-var enCryptCaesar = function (string,array) {
+var enCryptCaesar = function (string, array) {
     arrayFromString = Array.from(string);
     var result = [];
     for (var i=0; i<string.length; i++) {
@@ -53,7 +53,7 @@ var enCryptCaesar = function (string,array) {
     return result.join('');
 }
 
-var deCryptCaesar = function (string,array) {
+var deCryptCaesar = function (string, array) {
     arrayFromString = Array.from(string);
     var result = [];
     for (var i=0; i<string.length; i++) {
