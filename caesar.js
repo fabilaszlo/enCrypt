@@ -24,9 +24,7 @@ var rollCryptABC = cryptABC_Basic.map(function(i){
 })
 */
 var rollCryptABC = function(array, number) {
-    return array.map(function(i) {
-        return array[(number+array.indexOf(i))%array.length];
-    })
+    return array.map(function(i) {return array[(number+array.indexOf(i))%array.length];})
 }
 //
 /*  oldschool encryptCaesar function
