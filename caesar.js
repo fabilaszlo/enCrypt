@@ -48,15 +48,6 @@ var enCryptCaesar = function (string, array1, array2) {
     return (Array.from(string).map(function (i) { return array2[array1.indexOf(i)]; })).join('');
 }
 
-/*  oldschool decryptCaesar function
-var deCryptCaesar = function(string, array1, array2) {
-    var newarray = [];
-    for (var i=0; i<string.length; i++) {
-        newarray[i] = array1[array2.indexOf(string[i])];
-    }
-    return newarray.join('');
-}
-*/
 var deCryptCaesar = function (string, array1, array2) {
     return (Array.from(string).map(function (i) { return array1[array2.indexOf(i)]; })).join('');
 }
