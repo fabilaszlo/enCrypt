@@ -21,13 +21,41 @@ var rollCryptABC = function (array, number) {
 keyWord = removeDuplicationsFromArray(Array.from(clearArray(keyWord, cryptABC_Basic)));
 console.log(keyWord);
 
-var setPoliCryiptABC = function (array1, array2) {
+var setPoliCryptABC = function (array1, array2) {
     var newArray = [];
     for (var i = 0; i < array1.length; i++) {
         newArray[i] = rollCryptABC(array2, array2.indexOf(array1[i]));
     }
     return(newArray);
 }
+/*
+var enCryptCaesar = function (string, array1, array2) {
+    return (Array.from(string).map(function (i) { return array2[i%(poliCryptABC.length)][array1.indexOf(i)]; })).join('');
+}
+*/
+// oldschool encryptCaesar function
+var enCryptPoliAlphabetic = function(string, array1, array2) {
+    var newarray = [];
+    for (var i=0; i<string.length; i++) {
+        newarray[i] = array2[i%(poliCryptABC.length)][array1.indexOf(string[i])];
+        //console.log(string[i]+ ' ' + array2[i%(poliCryptABC.length)][array1.indexOf(string[i])]);
+    }
+    return newarray.join('');
+}
+var deCryptPoliAlphabetic = function(string, array1, array2) {
+    var newarray = [];
+    for (var i=0; i<string.length; i++) {
+        newarray[i] = array1[array2[i%(poliCryptABC.length)].indexOf(string[i])];
+    }
+    return newarray.join('');
+}
 
-poliCryptABC = setPoliCryiptABC(keyWord, cryptABC_Basic);
+
+poliCryptABC = setPoliCryptABC(keyWord, cryptABC_Basic);
 console.log(poliCryptABC);
+console.log(poliCryptABC.length);
+messageOriginal = clearArray(Array.from(messageOriginal), cryptABC_Basic);
+messageCrypted = enCryptPoliAlphabetic(messageOriginal, cryptABC_Basic, poliCryptABC);
+console.log(messageCrypted);
+
+console.log(deCryptPoliAlphabetic(messageCrypted, cryptABC_Basic, poliCryptABC));
