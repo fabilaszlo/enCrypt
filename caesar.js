@@ -8,19 +8,13 @@ var distanceKey = 3;
 var keyWord = ("Fábi Horka Ákos").toUpperCase();
 keyWord = Array.from(keyWord);
 
-var clearText = function (text, characterBasis) {
-    if (typeof text !== 'string') {
-        return text.filter(item => characterBasis.includes(item) );
-    }
-    else
-        return (Array.from(text)).filter(item => characterBasis.includes(item)).join('');
-}
-var uniqText = function (text) {
-    if (typeof text === 'string') {
-        return (Array.from(text)).reduce((acc, item) => acc.includes(item) ? acc : acc.concat(item), []).join('');
-    }
-    else return text.reduce((acc, item) => acc.includes(item) ? acc : acc.concat(item), []);
-}
+var clearText = (text, characterBasis) => typeof text === 'string' ? 
+    (Array.from(text)).filter(item => characterBasis.includes(item)).join('') :
+    text.filter(item => characterBasis.includes(item) );
+
+var uniqText = text => typeof text === 'string' ? 
+    (Array.from(text)).reduce((acc, item) => acc.includes(item) ? acc : acc.concat(item), []).join('') :
+    text.reduce((acc, item) => acc.includes(item) ? acc : acc.concat(item), []);
 
 var rollCryptABC = function (basic, distance) {
     return basic.map(item => basic[(distance + basic.indexOf(item)) % basic.length]);
