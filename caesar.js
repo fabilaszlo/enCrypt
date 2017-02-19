@@ -10,12 +10,11 @@ keyWord = Array.from(keyWord);
 
 var clearText = function (text, characterBasis) {
     if (typeof text !== 'string') {
-        return text.filter(function (i) { return characterBasis.includes(i) });
+        return text.filter(item => characterBasis.includes(item) );
     }
     else
-        return (Array.from(text)).filter(function (i) { return characterBasis.includes(i) }).join('');
+        return (Array.from(text)).filter(item => characterBasis.includes(item)).join('');
 }
-
 var uniqText = function (text) {
     if (typeof text === 'string') {
         return (Array.from(text)).reduce((acc, item) => acc.includes(item) ? acc : acc.concat(item), []).join('');
@@ -24,17 +23,16 @@ var uniqText = function (text) {
 }
 
 var rollCryptABC = function (basic, distance) {
-    return basic.map(function (i) { return basic[(distance + basic.indexOf(i)) % basic.length]; })
+    return basic.map(item => basic[(distance + basic.indexOf(item)) % basic.length]);
 }
 
 var enCryptCaesar = function (text, basicABC, keyABC) {
-    return (Array.from(text).map(function (i) { return keyABC[basicABC.indexOf(i)]; })).join('');
+    return (Array.from(text).map(item => keyABC[basicABC.indexOf(item)])).join('');
 }
 
 var deCryptCaesar = function (text, basicABC, keyABC) {
-    return (Array.from(text).map(function (i) { return basicABC[keyABC.indexOf(i)]; })).join('');
+    return (Array.from(text).map(item => basicABC[keyABC.indexOf(item)])).join('');
 }
-
 var keyABC = function (key, basic) {
     return uniqText(key.concat(rollCryptABC(basic, (basic.indexOf(key[key.length - 1]) + 1))));
 }
